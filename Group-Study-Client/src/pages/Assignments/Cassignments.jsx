@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import  { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import aplicationL from '../../assets/lottie/Job application.json';
 import Lottie from 'lottie-react';
+import AuthContext from '../../context/AuthContext/AuthContext';
+import useAuth from '../../hooks/useAuth';
 
 const Cassignments = () => {
+    const {user}=useAuth();
     const { id } = useParams();
     const [dueDate, setDueDate] = useState(new Date());
   
@@ -20,6 +23,8 @@ const Cassignments = () => {
       const difficulty = form.difficulty.value;
   
       console.log({
+        assignment_id:id,
+        applicant_email:user.email,
         title,
         description,
         marks,
