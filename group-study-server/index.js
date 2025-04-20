@@ -38,6 +38,13 @@ const express = require('express');
         res.send(result);
     })
 
+    app.get('/assignment',async(req,res)=>{
+        const email=req.query.email;
+         const query={applicant_email:email}
+         const result=await groupAssignmentCollection.find(query).toArray();
+         res.send(result);
+    })
+
    
    
    
