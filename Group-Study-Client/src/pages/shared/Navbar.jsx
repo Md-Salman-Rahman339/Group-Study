@@ -58,6 +58,9 @@ import AuthContext from '../../context/AuthContext/AuthContext'
          <Link to='/signIn'>
          <button className="btn">Sign In</button>
          </Link>
+         <Link to='/register'>
+         <button className="btn">Register</button>
+         </Link>
          </>
         }
      </div>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import registerLottie from '../../assets/lottie/register.json' 
 import Lottie from 'lottie-react'
 import AuthContext from '../../context/AuthContext/AuthContext'
+import SocialLogin from '../shared/SocialLogin'
  const Register = () => {
     const {createUser}=useContext(AuthContext)
 
@@ -51,6 +52,7 @@ import AuthContext from '../../context/AuthContext/AuthContext'
                      <button className="btn btn-primary">Register</button>
                  </div>
              </form>
+             <SocialLogin></SocialLogin>
          </div>
      </div>
  </div>
