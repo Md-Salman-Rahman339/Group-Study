@@ -5,8 +5,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import aplicationL from '../../assets/lottie/Job application.json';
 import Lottie from 'lottie-react';
-import AuthContext from '../../context/AuthContext/AuthContext';
+import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+
 
 const Cassignments = () => {
     const {user}=useAuth();
@@ -22,7 +23,7 @@ const Cassignments = () => {
       const thumbnail = form.thumbnail.value;
       const difficulty = form.difficulty.value;
   
-      console.log({
+      const assignment={
         assignment_id:id,
         applicant_email:user.email,
         title,
@@ -31,7 +32,26 @@ const Cassignments = () => {
         thumbnail,
         difficulty,
         dueDate,
-      });
+      };
+      fetch('http://localhost:5000/assignment', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(assignment)
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.insertedId) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your assignment has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        })
     };
   return (
     <div className="hero bg-base-200 min-h-screen">
