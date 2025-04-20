@@ -28,6 +28,16 @@ const express = require('express');
        // Send a ping to confirm a successful connection
        await client.db("admin").command({ ping: 1 });
        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+
+       const groupAssignmentCollection=client.db('GroupStudy').collection('Assignments')
+
+       app.post('/assignment', async (req, res) => {
+        const application = req.body;
+        const result = await groupAssignmentCollection.insertOne(application);
+        res.send(result);
+    })
+
    
    
    
