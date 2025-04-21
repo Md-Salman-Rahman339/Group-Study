@@ -39,9 +39,9 @@ const express = require('express');
     })
 
     app.get('/assignment',async(req,res)=>{
-        const email=req.query.email;
-         const query={applicant_email:email}
-         const result=await groupAssignmentCollection.find(query).toArray();
+        const cursor =groupAssignmentCollection.find();
+         const result=await cursor.toArray();
+        //  console.log(result)
          res.send(result);
     })
 
