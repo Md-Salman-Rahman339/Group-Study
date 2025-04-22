@@ -37,6 +37,19 @@ async function run() {
             const email=req.query.email;
             const query={applicant_email:email}
             const result=await assignmentTakingCOllection.find(query).toArray();
+
+            for (const application of result) {
+                console.log(application.assign_id)
+                const query1 = { _id: new ObjectId(application.assign_id) }
+                const assignment = await assignmentTakingCOllection.findOne(query1);
+                if(assignment){
+                    application.title = assignment.title;
+                    application.status = assignment.status;
+                   
+                   
+                   
+                }
+            }
             res.send(result);
           })
         app.post('/assignment', async (req, res) => {

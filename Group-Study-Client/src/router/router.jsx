@@ -12,6 +12,7 @@ import Assignments from '../pages/Home/Assignments';
 import UpdateAssignment from '../pages/Assignments/UpdateAssignment';
 import AssignmentDetails from '../pages/AssignmentDetails/AssignmentDetails';
 import AssignmentSubmission from '../pages/AssignmentSubmission/AssignmentSubmission';
+import MyAssignments from '../pages/MyAssignment.jsx/MyAssignment';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -42,6 +43,11 @@ import AssignmentSubmission from '../pages/AssignmentSubmission/AssignmentSubmis
       {
         path:'assignmentSubmission/:id',
         element:<PrivateRoute><AssignmentSubmission></AssignmentSubmission></PrivateRoute>
+
+      },
+      {
+        path:'my-assignment-page',
+        element:<PrivateRoute><MyAssignments></MyAssignments></PrivateRoute>
 
       },
       {
