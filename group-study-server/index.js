@@ -36,19 +36,26 @@ async function run() {
             const result = await groupAssignmentCollection.find().toArray();
             res.send(result);
         });
+        app.get('/assignment/:id', async (req, res) => {
+            const id = req.params.id;
+          
+            if (!ObjectId.isValid(id)) {
+              return res.status(400).send({ error: 'Invalid ID format' });
+            }
+          
+            const result = await groupAssignmentCollection.findOne({ _id: new ObjectId(id) });
+            res.send(result);
+          });
+          
 
        
-        // app.delete('/assignment/:id', async (req, res) => {
-        //     console.log('going to delete', req.params.id);
-        //     const id = req.params.id;
-        //     const query = { _id: new ObjectId(id) }
-        //     const result = await groupAssignmentCollection.deleteOne(query);
-        //     res.send(result);
-        // })
-
+        
         app.delete('/assignment/:id', async (req, res) => {
             const id = req.params.id;
             const email = req.query.email;
+            if (!ObjectId.isValid(id)) {
+                return res.status(400).send({ error: 'Invalid assignment ID' });
+            }
         
             try {
                 const assignment = await groupAssignmentCollection.findOne({ _id: new ObjectId(id) });
@@ -76,6 +83,32 @@ async function run() {
             }
         });
         
+       
+
+        app.put('/assignment/:id', async (req, res) => {
+            const id = req.params.id;
+
+            
+            if (!ObjectId.isValid(id)) {
+                return res.status(400).send({ error: 'Invalid assignment ID format' });
+            }
+
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedDoc = {
+                $set: req.body
+            };
+
+            try {
+                const result = await groupAssignmentCollection.updateOne(filter, updatedDoc, options);
+                res.send(result);
+            } catch (error) {
+                console.error('Update failed:', error);
+                res.status(500).send({ error: 'Failed to update assignment' });
+            }
+        });
+
+       
       
 
     } finally {

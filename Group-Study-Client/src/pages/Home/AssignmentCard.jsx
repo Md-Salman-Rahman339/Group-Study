@@ -1,6 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const AssignmentCard = ({ assignment = {}, loadedAssignments = [], setLoadedAssignments }) => {
     const { user } = useAuth();
@@ -67,6 +68,9 @@ const AssignmentCard = ({ assignment = {}, loadedAssignments = [], setLoadedAssi
                 </div>
                 {user?.email === applicant_email && (
                     <div className="card-actions justify-end">
+                         <Link to={`/updateAssignment/${_id}`}>
+                         <button className="btn btn-error btn-sm">Edit</button>
+                     </Link>
                         <button onClick={handleDelete} className="btn btn-error btn-sm">Delete</button>
                     </div>
                 )}
