@@ -8,6 +8,7 @@ import Register from '../pages/Register/Register';
 import SignIn from '../pages/SignIn/SignIn';
 import PrivateRoute from './PrivateRoute';
 import Cassignments from '../pages/Assignments/Cassignments';
+import Assignments from '../pages/Home/Assignments';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -29,7 +30,11 @@ import Cassignments from '../pages/Assignments/Cassignments';
       {
         path:'signIn',
         element:<SignIn></SignIn>
-      }
+      },
+      {
+         path:'assign',
+         element:<Assignments></Assignments>
+      },
       ]
     },
   ]);
