@@ -1,10 +1,10 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 
 const AssignmentDetails = () => {
     const assignmentD=useLoaderData();
     const {
-       
+        _id,
         title,
         description,
         marks,
@@ -28,7 +28,7 @@ const AssignmentDetails = () => {
         <h1>Marks:{marks}</h1>
         <h1>Difficulty:{difficulty}</h1>
         <h1>Due Date:{dueDate}</h1>
-        <button className="btn btn-primary">Take Assignment</button>
+       <Link to={`/assignmentSubmission/${_id}`}>  <button className="btn btn-primary">Take Assignment</button></Link>
       </div>
     </div>
   </div>

@@ -11,6 +11,7 @@ import Cassignments from '../pages/Assignments/Cassignments';
 import Assignments from '../pages/Home/Assignments';
 import UpdateAssignment from '../pages/Assignments/UpdateAssignment';
 import AssignmentDetails from '../pages/AssignmentDetails/AssignmentDetails';
+import AssignmentSubmission from '../pages/AssignmentSubmission/AssignmentSubmission';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -36,6 +37,11 @@ import AssignmentDetails from '../pages/AssignmentDetails/AssignmentDetails';
         path:'/assignments/:id',
         element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
         loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+
+      },
+      {
+        path:'assignmentSubmission/:id',
+        element:<PrivateRoute><AssignmentSubmission></AssignmentSubmission></PrivateRoute>
 
       },
       {

@@ -25,7 +25,19 @@ async function run() {
         console.log("Connected to MongoDB");
 
         const groupAssignmentCollection = client.db('GroupStudy').collection('Assignments');
+        const assignmentTakingCOllection=client.db('GroupStudy').collection('my-assignment')
 
+        app.post('/my-assignment', async (req, res) => {
+            const application = req.body;
+            const result = await assignmentTakingCOllection.insertOne(application);
+            res.send(result);
+        })
+        app.get('/my-assignment',async(req,res)=>{
+            const email=req.query.email;
+            const query={applicant_email:email}
+            const result=await assignmentTakingCOllection.find(query).toArray();
+            res.send(result);
+          })
         app.post('/assignment', async (req, res) => {
             const application = req.body;
             const result = await groupAssignmentCollection.insertOne(application);
