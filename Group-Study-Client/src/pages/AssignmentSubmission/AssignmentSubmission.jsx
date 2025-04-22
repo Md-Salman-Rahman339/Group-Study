@@ -1,7 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 const AssignmentSubmission = () => {
+    const {user}=useAuth();
     const { id } = useParams();
     console.log(id)
     const submitAssignment = e => {
@@ -11,7 +13,33 @@ const AssignmentSubmission = () => {
         const github = form.github.value;
         
 
-        console.log(liveUrl, github);
+        // console.log(liveUrl, github);
+        const assignmentSubmit={
+            assign_id:id,
+            applicant_email:user.email,
+            liveUrl,
+            github,
+            status: 'pending',
+        }
+        fetch('http://localhost:5000/my-assignment', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(assignmentSubmit)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your assignment has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
 
     }
   return (

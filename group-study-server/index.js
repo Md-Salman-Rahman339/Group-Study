@@ -29,6 +29,7 @@ async function run() {
 
         app.post('/my-assignment', async (req, res) => {
             const application = req.body;
+            application.status = application.status || 'pending'; 
             const result = await assignmentTakingCOllection.insertOne(application);
             res.send(result);
         })
