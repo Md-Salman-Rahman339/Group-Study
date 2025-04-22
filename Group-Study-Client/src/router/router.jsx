@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import Cassignments from '../pages/Assignments/Cassignments';
 import Assignments from '../pages/Home/Assignments';
 import UpdateAssignment from '../pages/Assignments/UpdateAssignment';
+import AssignmentDetails from '../pages/AssignmentDetails/AssignmentDetails';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -30,6 +31,12 @@ import UpdateAssignment from '../pages/Assignments/UpdateAssignment';
         loader: async ({ params }) => {
             return fetch(`http://localhost:5000/assignment/${params.id}`);
           },
+      },
+      {
+        path:'/assignments/:id',
+        element:<PrivateRoute><AssignmentDetails></AssignmentDetails></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:5000/assignment/${params.id}`)
+
       },
       {
         path:'register',

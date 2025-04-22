@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const UpdateAssignment = () => {
   const assignment = useLoaderData();
-  console.log("Loaded assignment:", assignment);
+//   console.log("Loaded assignment:", assignment);
   const navigate = useNavigate();
   const {
     _id,

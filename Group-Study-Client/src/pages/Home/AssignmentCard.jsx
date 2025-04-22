@@ -68,6 +68,9 @@ const AssignmentCard = ({ assignment = {}, loadedAssignments = [], setLoadedAssi
                 </div>
                 {user?.email === applicant_email && (
                     <div className="card-actions justify-end">
+                        <Link to={`/assignments/${_id}`}>
+                         <button className="btn btn-error btn-sm">View Assignment</button>
+                     </Link>
                          <Link to={`/updateAssignment/${_id}`}>
                          <button className="btn btn-error btn-sm">Edit</button>
                      </Link>
