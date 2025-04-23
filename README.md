@@ -1,7 +1,7 @@
 📘 Online Group Study Assignment - BJET Inc.
 
 🌐 Live Server URL:https://group-study-server-a69h.onrender.com
-Live Url:https://group-study-server-a69h.onrender.com
+Live Url:https://group-study-c2713.firebaseapp.com
 
 Visit the Live Site
 
