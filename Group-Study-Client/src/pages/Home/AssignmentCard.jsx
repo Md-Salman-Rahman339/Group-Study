@@ -66,17 +66,25 @@ const AssignmentCard = ({ assignment = {}, loadedAssignments = [], setLoadedAssi
                     <p><strong>Marks:</strong> {marks}</p>
                     <p><strong>Due:</strong> {new Date(dueDate).toLocaleDateString()}</p>
                 </div>
-                {user?.email === applicant_email && (
-                    <div className="card-actions justify-end">
+                
+                   <div className="card-actions justify-end">
+                   <div >
                         <Link to={`/assignments/${_id}`}>
                          <button className="btn btn-error btn-sm">View Assignment</button>
                      </Link>
+                     </div>
+                     {user?.email === applicant_email && (
+                        <>
                          <Link to={`/updateAssignment/${_id}`}>
                          <button className="btn btn-error btn-sm">Edit</button>
                      </Link>
                         <button onClick={handleDelete} className="btn btn-error btn-sm">Delete</button>
-                    </div>
-                )}
+                   
+                    </>
+                  )}
+                    
+                    </div> 
+                  
             </div>
         </div>
     );

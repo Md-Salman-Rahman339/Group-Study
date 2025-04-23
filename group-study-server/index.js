@@ -27,6 +27,46 @@ async function run() {
         const groupAssignmentCollection = client.db('GroupStudy').collection('Assignments');
         const assignmentTakingCOllection=client.db('GroupStudy').collection('my-assignment')
 
+
+        app.get('/pending-assignments', async (req, res) => {
+            const email = req.query.email; 
+        
+            const query = {
+                status: 'pending',
+                applicant_email: { $ne: email } 
+            };
+        
+            const result = await assignmentTakingCOllection.find(query).toArray();
+        
+            for (const assignment of result) {
+                const fullAssignment = await groupAssignmentCollection.findOne({ _id: new ObjectId(assignment.assign_id) });
+        
+                if (fullAssignment) {
+                    assignment.title = fullAssignment.title;
+                    assignment.totalMarks = fullAssignment.totalMarks;
+                }
+            }
+        
+            res.send(result);
+        });
+        app.put('/mark-assignment/:id', async (req, res) => {
+            const id = req.params.id;
+            const { obtainedMarks, feedback } = req.body;
+        
+            const updateDoc = {
+                $set: {
+                    obtainedMarks,
+                    feedback,
+                    status: 'Checked'
+                }
+            };
+        
+            const result = await assignmentTakingCOllection.updateOne({ _id: new ObjectId(id) }, updateDoc);
+            res.send(result);
+        });
+        
+        
+
         app.post('/my-assignment', async (req, res) => {
             const application = req.body;
             application.status = application.status || 'pending'; 

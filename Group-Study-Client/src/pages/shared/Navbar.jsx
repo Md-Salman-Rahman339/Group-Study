@@ -16,8 +16,9 @@ import AuthContext from '../../context/AuthContext/AuthContext'
     }
      const links = <>
           <Link to='/'><li><button>Home</button></li></Link>
-          <Link to='/assignment'><li><button>Create Assignment</button></li></Link>
+          <Link to='/assignment'><li><button> Assignment</button></li></Link>
           <Link to='/my-assignment-page'><li><button>My Assignment</button></li></Link>
+          <Link to='/pending-assignments'><li><button>Grade Assignment</button></li></Link>
 
           
       </>

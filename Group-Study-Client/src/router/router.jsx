@@ -13,6 +13,7 @@ import UpdateAssignment from '../pages/Assignments/UpdateAssignment';
 import AssignmentDetails from '../pages/AssignmentDetails/AssignmentDetails';
 import AssignmentSubmission from '../pages/AssignmentSubmission/AssignmentSubmission';
 import MyAssignments from '../pages/MyAssignment.jsx/MyAssignment';
+import PendingAssignments from '../pages/PendingAssignments/PendingAssignments';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -48,6 +49,11 @@ import MyAssignments from '../pages/MyAssignment.jsx/MyAssignment';
       {
         path:'my-assignment-page',
         element:<PrivateRoute><MyAssignments></MyAssignments></PrivateRoute>
+
+      },
+      {
+        path:'pending-assignments',
+        element:<PrivateRoute><PendingAssignments></PendingAssignments></PrivateRoute>
 
       },
       {

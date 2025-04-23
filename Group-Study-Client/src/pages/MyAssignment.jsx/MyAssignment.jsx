@@ -45,12 +45,10 @@ const MyAssignments = () => {
                     {assignment.status}
                   </span>
                 </td>
-                <td>{assignment.totalMarks}</td>
+                <td>{assignment.marks}</td>
                 <td>{assignment.obtainedMarks || '-'}</td>
                 <td>{assignment.feedback || 'No feedback yet'}</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">Details</button>
-                </th>
+             
               </tr>
             ))}
           </tbody>
